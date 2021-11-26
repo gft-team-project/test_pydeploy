@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "Pyflaskrepo" {
-  name                 = "Pyflaskrepo"
+  name                 = "pyflaskrepo"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
