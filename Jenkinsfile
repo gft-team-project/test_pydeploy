@@ -25,7 +25,7 @@ agent any
          script {
            //cd ecr-create
            sh 'cd ecr-create && terraform init'
-           sh 'terraform plan'
+           sh 'cd ecr-create && terraform plan'
          }
        }
      }
