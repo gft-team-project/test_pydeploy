@@ -29,7 +29,7 @@ resource "aws_ecs_task_definition" "main" {
   task_role_arn            = "arn:aws:iam::713842441534:role/ecsrole"
   container_definitions = jsonencode([{
     name      = "devopsinterview"
-    image     = "public.ecr.aws/s6k3s0j1/Pyflaskrepo:latest"
+    image     = "713842441534.dkr.ecr.us-east-1.amazonaws.com/pyflaskrepo:latest"
     essential = true
     portMappings = [{
       protocol      = "tcp"
