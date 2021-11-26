@@ -21,14 +21,14 @@ resource "aws_ecs_cluster" "main" {
 
 resource "aws_ecs_task_definition" "main" {
   network_mode             = "awsvpc"
-  family                   = "NBSTest"
+  family                   = "BidnamicTest"
   requires_compatibilities = ["FARGATE"]
   cpu                      = 256
   memory                   = 512
   execution_role_arn       = "arn:aws:iam::713842441534:role/ecsrole"
   task_role_arn            = "arn:aws:iam::713842441534:role/ecsrole"
   container_definitions = jsonencode([{
-    name      = "devopsinterview"
+    name      = "bidnamicDemo"
     image     = "713842441534.dkr.ecr.us-east-1.amazonaws.com/pyflaskrepo:latest"
     essential = true
     portMappings = [{
@@ -39,10 +39,10 @@ resource "aws_ecs_task_definition" "main" {
 }
 #create aws_ecs service
 resource "aws_ecs_service" "main" {
-  name                = "expressAPI"
+  name                = "BidnamicSampleApp"
   cluster             = aws_ecs_cluster.main.id
   task_definition     = aws_ecs_task_definition.main.arn
-  desired_count       = 1
+  desired_count       = 2
   launch_type         = "FARGATE"
   scheduling_strategy = "REPLICA"
   network_configuration {
