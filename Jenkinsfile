@@ -13,7 +13,7 @@ agent any
       steps{
         script {
           
-         dockerImage = docker.build registry .
+         sh 'docker build -t flakapp' 
                }
            }
    }
