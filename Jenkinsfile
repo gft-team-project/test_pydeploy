@@ -22,7 +22,7 @@ agent any
 
  stage('TF Plan') {
        steps {
-         container('terraform') {
+         script {
            sh 'cd ecr-create'
            sh 'terraform init'
            sh 'terraform plan --auto-approve'
@@ -32,7 +32,7 @@ agent any
 
 stage('TF Apply') {
       steps {
-        container('terraform') {
+        script {
           sh 'terraform apply --auto-approve'
           sh 'cd ..'
         }
