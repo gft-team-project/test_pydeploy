@@ -24,8 +24,8 @@ agent any
        steps {
          script {
            //cd ecr-create
-           sh 'cd ecr-create && sudo terraform init'
-           sh 'cd ecr-create && sudo terraform plan'
+           sh 'cd ecr-create && terraform init'
+           sh 'cd ecr-create && terraform plan'
          }
        }
      }
@@ -33,7 +33,7 @@ agent any
 stage('TF Apply') {
       steps {
         script {
-          sh 'sudo terraform apply --auto-approve'
+          sh 'terraform apply --auto-approve'
           sh 'cd ..'
         }
       }
