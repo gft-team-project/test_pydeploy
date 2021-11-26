@@ -17,6 +17,27 @@ agent any
                }
            }
    }
+  
+  //Creating AWS ECR registry terraform
 
+ stage('TF Plan') {
+       steps {
+         container('terraform') {
+           sh 'cd ecr-create'
+           sh 'terraform init'
+           sh 'terraform plan --auto-approve'
+         }
+       }
+     }
+
+stage('TF Apply') {
+      steps {
+        container('terraform') {
+          sh 'terraform apply --auto-approve'
+          sh 'cd ..'
+        }
+      }
+    }
+  }
 }
-}
+
