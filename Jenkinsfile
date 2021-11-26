@@ -1,5 +1,10 @@
 pipeline {
-agent any
+ environment {
+  AWS_ACCESS_KEY_ID= credentials('AWS_ACCESS_KEY_ID')
+  AWS_SECRET_ACCESS_KEY= credentials('AWS_SECRET_ACCESS_KEY')
+ 
+ }
+ agent any
  stages {
  stage('Cloning Git') {
             steps {
@@ -25,8 +30,6 @@ agent any
          script {
            //cd ecr-create
            sh 'cd ecr-create && terraform init'
-           sh '''cd ecr-create && export AWS_ACCESS_KEY_ID=$[env.AWS_ACCESS_KEY_ID]'''
-          sh '''cd ecr-create && export AWS_SECRET_ACCESS_KEY=$[env.AWS_SECRET_ACCESS_KEY]'''
           sh 'cd ecr-create && terraform plan'
          }
        }
