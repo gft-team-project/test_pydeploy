@@ -23,8 +23,8 @@ agent any
  stage('TF Plan') {
        steps {
          script {
-           //sh 'cd ecr-create'
-           sh ' cd ecr-create && terraform init'
+           sh 'cd ecr-create'
+           sh 'terraform init'
            sh 'terraform plan'
          }
        }
