@@ -38,8 +38,8 @@ pipeline {
 stage('TF Apply') {
       steps {
         script {
-          sh 'terraform apply --auto-approve'
-          sh 'cd ..'
+          sh 'cd ecr-create && terraform apply --auto-approve'
+         
         }
       }
     }
