@@ -38,7 +38,7 @@ pipeline {
 stage('TF Apply') {
       steps {
         script {
-          sh 'cd ecr-create && terraform apply --auto-approve'
+          sh 'cd ecr-create && terraform destroy --auto-approve'
          
         }
       }
@@ -67,7 +67,7 @@ stage('TF Apply') {
 stage('ECS TF Apply') {
       steps {
         script {
-          sh 'cd ecs-deploy && terraform apply --auto-approve'
+          sh 'cd ecs-deploy && terraform destroy --auto-approve'
          
         }
       }
