@@ -1,4 +1,4 @@
-resource "aws_ecr_repository" "ecrrepo" {
+resource "aws_ecr_repository" "Pyflaskrepo" {
   name                 = "Pyflaskrepo"
   image_tag_mutability = "MUTABLE"
 
