@@ -25,7 +25,7 @@ agent any
          script {
            //cd ecr-create
            sh 'cd ecr-create && terraform init'
-           sh 'cd ecr-create && terraform plan'
+           sh 'cd ecr-create && $[env.AWS_ACCESS_KEY_ID] $[env.AWS_SECRET_ACCESS_KEY] terraform plan'
          }
        }
      }
