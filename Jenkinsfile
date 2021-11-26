@@ -52,6 +52,26 @@ stage('TF Apply') {
     }
    }
   }
+   //Creating AWS ECS terraform
+
+ stage('ECS TF Plan') {
+       steps {
+         script {
+           //cd ecr-create
+           sh 'cd ecs-deploy && terraform init'
+          sh 'cd ecs-deploy && terraform plan'
+         }
+       }
+     }
+
+stage('ECS TF Apply') {
+      steps {
+        script {
+          sh 'cd ecs-deploy && terraform apply --auto-approve'
+         
+        }
+      }
+    }
   }
 }
 
