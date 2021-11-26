@@ -18,7 +18,7 @@ pipeline {
       steps{
         script {
           
-         sh 'docker build -t flakapp .' 
+         sh 'docker build -t pyflaskrepo:latest .' 
                }
            }
    }
