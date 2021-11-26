@@ -13,7 +13,7 @@ agent any
       steps{
         script {
           
-         sh 'docker build -t flakapp' 
+         sh 'docker build -t flakapp .' 
                }
            }
    }
