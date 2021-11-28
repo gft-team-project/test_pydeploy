@@ -6,7 +6,3 @@ resource "aws_ecr_repository" "Pyflaskrepo" {
     scan_on_push = true
   }
 }
-#data "aws_ecr_image" "ecrrepo" {
- # repository_name = "ecrrepo"
-  #image_tag       = "latest"
-#}

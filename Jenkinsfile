@@ -52,7 +52,7 @@ stage('TF Apply') {
     }
    }
   }
-   //Creating AWS ECS terraform
+   //Creating AWS ECS task and deploying image -terraform
 
  stage('ECS TF Plan') {
        steps {
