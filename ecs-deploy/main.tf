@@ -46,8 +46,8 @@ resource "aws_ecs_service" "main" {
   launch_type         = "FARGATE"
   scheduling_strategy = "REPLICA"
   network_configuration {
-    security_groups  = [aws_security_group.ELB-sg.id]
-    subnets          = [aws_subnet.web-subnet-1.id]
+    security_groups  = [aws_security_group.ECS-sg.id]
+    subnets          = [aws_subnet.flask-subnet.id]
     assign_public_ip = true
   }
 }

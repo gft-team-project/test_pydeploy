@@ -5,19 +5,19 @@ resource "aws_vpc" "my-vpc" {
     Name = "MyVPC"
   }
 }
-resource "aws_subnet" "web-subnet-1" {
+resource "aws_subnet" "flask-subnet" {
   vpc_id                  = aws_vpc.my-vpc.id
   cidr_block              = "10.0.1.0/24"
   availability_zone       = "us-east-1a"
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "Web-1a"
+    Name = "flask-subnet"
   }
 }
-# Create Web Security Group
-resource "aws_security_group" "ELB-sg" {
-  name        = "ELB-sg"
+# Create ECS Security Group
+resource "aws_security_group" "ECS-sg" {
+  name        = "ECS-sg"
   description = "Allow HTTP inbound traffic"
   vpc_id      = aws_vpc.my-vpc.id
 
@@ -45,6 +45,35 @@ resource "aws_security_group" "ELB-sg" {
   }
 
   tags = {
-    Name = "ELB-sg"
+    Name = "ECS-sg"
   }
+}
+# Create Internet Gateway
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.my-vpc.id
+
+  tags = {
+    Name = "IGW"
+  }
+}
+
+# Create ECS layber route table
+resource "aws_route_table" "ECS-rt" {
+  vpc_id = aws_vpc.my-vpc.id
+
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = "WebRouteTable"
+  }
+}
+
+# Create Web Subnet association with Web route table
+resource "aws_route_table_association" "a" {
+  subnet_id      = aws_subnet.flask-subnet.id
+  route_table_id = aws_route_table.ECS-rt.id
 }
