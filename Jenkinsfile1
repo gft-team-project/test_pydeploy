@@ -1,5 +1,12 @@
  //Creating AWS ECR registry terraform
-
+pipeline {
+ environment {
+  AWS_ACCESS_KEY_ID= credentials('AWS_ACCESS_KEY_ID')
+  AWS_SECRET_ACCESS_KEY= credentials('AWS_SECRET_ACCESS_KEY')
+ 
+ }
+ agent any
+ stages {
  stage('TF Plan') {
        steps {
          script {
@@ -18,3 +25,4 @@ stage('TF Apply') {
         }
       }
     }
+  }
