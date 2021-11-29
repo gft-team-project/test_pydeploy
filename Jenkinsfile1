@@ -7,6 +7,12 @@ pipeline {
  }
  agent any
  stages {
+ stage('Cloning Git') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nwaykole/pydeploy.git']]])    
+                  }
+                      }
+ 
  stage('TF Plan') {
        steps {
          script {
@@ -26,3 +32,4 @@ stage('TF Apply') {
       }
     }
   }
+}
