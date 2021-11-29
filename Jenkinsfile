@@ -23,6 +23,25 @@ pipeline {
            }
    }
   
+  //Creating ECR regitry terraform
+  stage('TF Plan') {
+       steps {
+         script {
+           //cd ecr-create
+           sh 'cd ecr-create && terraform init'
+          sh 'cd ecr-create && terraform plan'
+         }
+       }
+     }
+
+stage('TF Apply') {
+      steps {
+        script {
+          sh 'cd ecr-create && terraform apply --auto-approve'
+         
+        }
+      }
+    }
  
   stage('Push Image to ECR') {
    steps {
