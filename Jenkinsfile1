@@ -1,0 +1,20 @@
+ //Creating AWS ECR registry terraform
+
+ stage('TF Plan') {
+       steps {
+         script {
+           //cd ecr-create
+           sh 'cd ecr-create && terraform init'
+          sh 'cd ecr-create && terraform plan'
+         }
+       }
+     }
+
+stage('TF Apply') {
+      steps {
+        script {
+          sh 'cd ecr-create && terraform apply --auto-approve'
+         
+        }
+      }
+    }
