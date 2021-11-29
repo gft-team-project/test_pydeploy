@@ -2,7 +2,7 @@
 resource "aws_vpc" "my-vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "MyVPC"
+    Name = "PyVPC"
   }
 }
 resource "aws_subnet" "flask-subnet" {
@@ -53,7 +53,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.my-vpc.id
 
   tags = {
-    Name = "IGW"
+    Name = "pyIGW"
   }
 }
 
